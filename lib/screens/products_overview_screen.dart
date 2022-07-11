@@ -8,6 +8,7 @@ import 'package:shop/widgets/badge.dart';
 
 import '../models/product.dart';
 import '../providers/cart.dart';
+import '../widgets/app_drawer.dart';
 import '../widgets/product_item.dart';
 
 enum FilterType {
@@ -100,6 +101,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           ),
         ],
       ),
+      drawer: AppDrawer(),
       body: ProductGrid(_showOnlyFav),
     );
   }
