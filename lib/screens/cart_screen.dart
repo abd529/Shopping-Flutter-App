@@ -6,9 +6,14 @@ import '../providers/orders.dart';
 import '../widgets/cart_item.dart';
 import '../providers/cart.dart' show Cart, CartItem;
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   static const routeName = '/cart';
 
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context, listen: false);
@@ -42,9 +47,11 @@ class CartScreen extends StatelessWidget {
                   TextButton(
                     child: Text('ORDER NOW'),
                     onPressed: () {
-                      Provider.of(context).addOrder(
+                      Provider.of<Orders>(context, listen: false).addOrder(
                           cart.items.values.toList(), cart.totalAmount);
-                      cart.items.clear();
+                      setState(() {
+                        cart.clearCart();
+                      });
                     },
                   )
                 ],
