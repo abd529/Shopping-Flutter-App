@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:shop/widgets/cart_item.dart';
 
 class CartItemP {
   final String id;
@@ -55,6 +56,24 @@ class Cart with ChangeNotifier {
 
   void removeItem(String id) {
     _items.remove(id);
+    notifyListeners();
+  }
+
+  void RemoveSingle(String productId) {
+    if (!_items.containsKey(productId)) {
+      return;
+    }
+    if (_items[productId]!.quantity > 1) {
+      _items.update(
+          productId,
+          (existingCartItem) => CartItemP(
+              id: existingCartItem.id,
+              price: existingCartItem.price,
+              quantity: existingCartItem.quantity - 1,
+              title: existingCartItem.title));
+    } else {
+      _items.remove(productId);
+    }
     notifyListeners();
   }
 

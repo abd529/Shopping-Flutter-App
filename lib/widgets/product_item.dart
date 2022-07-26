@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +42,14 @@ class ProductItem extends StatelessWidget {
             ),
             onPressed: () {
               cart.addItem(product.id, product.price, product.title);
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content:
+                    Text("product added to cart", textAlign: TextAlign.center),
+                duration: Duration(seconds: 2),
+                action: SnackBarAction(
+                    label: "UNDO",
+                    onPressed: () => cart.RemoveSingle(product.id)),
+              ));
             },
             color: Colors.white,
           ),
