@@ -1,5 +1,6 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/foundation.dart';
-import 'package:shop/widgets/cart_item.dart';
 
 class CartItemP {
   final String id;

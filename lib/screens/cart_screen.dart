@@ -16,7 +16,7 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<Cart>(context, listen: false);
+    final cart = Provider.of<Cart>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Cart'),
